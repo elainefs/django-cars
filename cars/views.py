@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -25,6 +27,12 @@ class CarsView(ListView):
         return cars
 
 
+class CarDetailView(DetailView):
+    model = Car
+    template_name = "car_detail.html"
+
+
+@method_decorator(login_required(login_url="login"), name="dispatch")
 class NewCarView(CreateView):
     model = Car
     form_class = CarModelForm
@@ -32,11 +40,7 @@ class NewCarView(CreateView):
     success_url = "/cars/"
 
 
-class CarDetailView(DetailView):
-    model = Car
-    template_name = "car_detail.html"
-
-
+@method_decorator(login_required(login_url="login"), name="dispatch")
 class CarUpdateView(UpdateView):
     model = Car
     form_class = CarModelForm
@@ -46,6 +50,7 @@ class CarUpdateView(UpdateView):
         return reverse_lazy("car_detail", kwargs={"pk": self.object.pk})
 
 
+@method_decorator(login_required(login_url="login"), name="dispatch")
 class CarDeleteView(DeleteView):
     model = Car
     template_name = "car_delete.html"
