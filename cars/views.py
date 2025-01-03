@@ -45,3 +45,8 @@ class CarUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy("car_detail", kwargs={"pk": self.object.pk})
 
+
+class CarDeleteView(DeleteView):
+    model = Car
+    template_name = "car_delete.html"
+    success_url = "/cars/"
