@@ -23,7 +23,13 @@ class CarsView(ListView):
         search = self.request.GET.get("search")
 
         if search:
-            cars = cars.filter(model__icontains=search)
+            cars_search_model = cars.filter(model__icontains=search)
+            cars_search_brand = cars.filter(brand__name__icontains=search)
+            if cars_search_model.exists():
+                return cars_search_model
+            elif cars_search_brand.exists():
+                return cars_search_brand
+
         return cars
 
 
