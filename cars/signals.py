@@ -12,7 +12,7 @@ def car_inventory_update():
 
 
 @receiver(pre_save, sender=Car)
-def car_pre_save(sender, instance, created, **kwargs):
+def car_pre_save(sender, instance, **kwargs):
     if not instance.bio:
         instance.bio = "Este carro combina estilo, conforto e desempenho, sendo uma ótima escolha para quem busca qualidade e confiabilidade. Com um design marcante e um interior que oferece conforto, ele é ideal tanto para o uso diário quanto para momentos especiais. Cada detalhe foi pensado para garantir uma condução prazerosa, segura e eficiente."
 
@@ -23,5 +23,5 @@ def car_post_save(sender, instance, created, **kwargs):
 
 
 @receiver(post_delete, sender=Car)
-def car_post_delete(sender, instance, created, **kwargs):
+def car_post_delete(sender, instance, **kwargs):
     car_inventory_update()
