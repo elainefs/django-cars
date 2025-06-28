@@ -5,26 +5,31 @@
 <form method="POST">
     {% csrf_token %}
 
-    <div class="form-group">
-        {{ user_form.username.errors }}
-        <label>Usuário: </label>
-        {{ user_form.username }}
-    </div>
+    <div class="container-login">
+        <div class="fields">
+            <h2>Cadastro</h2>
+            <div class="form-group">
+                {{ user_form.username.errors }}
+                <label>Usuário</label>
+                <p>{{ user_form.username }}</p>
+            </div>
 
-    <div class="form-group">
-        {{ user_form.password1.errors }}
-        <label>Senha: </label>
-        {{ user_form.password1 }}
-    </div>
+            <div class="form-group">
+                {{ user_form.password1.errors }}
+                <label>Senha</label>
+                <p>{{ user_form.password1 }}</p>
+            </div>
 
-    <div class="form-group">
-        {{ user_form.password2.errors }}
-        <label>Confirmação de senha: </label>
-        {{ user_form.password2 }}
-    </div>
+            <div class="form-group">
+                {{ user_form.password2.errors }}
+                <label>Confirmação de senha</label>
+                <p>{{ user_form.password2 }}</p>
+            </div>
 
-    <div class="form-group">
-        <input type="submit" value="Cadastrar">
+            <div class="form-group">
+                <input class="btn-submit" type="submit" value="Cadastrar">
+            </div>
+        </div>
     </div>
 </form>
 

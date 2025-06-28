@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib import messages
 from django.shortcuts import redirect, render
 
 
@@ -23,6 +24,7 @@ def login_view(request):
             login(request, user)
             return redirect("cars_list")
         else:
+            messages.error(request, "Usuário ou Senha inválidos.")
             login_form = AuthenticationForm()
     else:
         login_form = AuthenticationForm()

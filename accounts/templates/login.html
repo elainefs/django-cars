@@ -5,11 +5,26 @@
 <form method="POST">
     {% csrf_token %}
 
-    <table>
-        {{ login_form.as_table }}
-    </table>
+    <div class="container-login">
+        <div class="fields">
+            <h2>Login</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-danger">{{message}}</div>
+                {% endfor %}
+            {% endif %}
+            <div>
+                <label>Usuário</label>
+                <p>{{ login_form.username }}</p>
+            </div>
+            <div>
+                <label>Senha</label>
+                <p>{{ login_form.password }}</p>
+            </div>
+            <input class="btn-submit" type="submit" value="Entrar">
+        </div>
+    </div>
 
-    <input type="submit" value="Entrar">
 </form>
 
 {% endblock %}
